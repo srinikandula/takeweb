@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
+<web-app>
+    <servlet>
+        <servlet-name>createAccount</servlet-name>
+        <servlet-class>com.web.CreateAccountServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>findAccountBalance</servlet-name>
+        <servlet-class>com.web.FindBalanceServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>createAccount</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>findAccountBalance</servlet-name>
+        <url-pattern>/findBalance</url-pattern>
+    </servlet-mapping>
+</web-app>
