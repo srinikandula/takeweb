@@ -2,6 +2,22 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
     <servlet>
+        <servlet-name>createAccountAmar</servlet-name>
+        <servlet-class>com.web.CreateAccountServletAmar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>findBalanceAmar</servlet-name>
+        <servlet-class>com.web.FindBalanceServletAmar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>accountDepositAmar</servlet-name>
+        <servlet-class>com.web.depositServletAmar</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteAccountAmar</servlet-name>
+        <servlet-class>com.web.DeleteAccountServletAmar</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>createAccount</servlet-name>
         <servlet-class>com.web.CreateAccountServlet</servlet-class>
     </servlet>
@@ -30,10 +46,28 @@
         <servlet-class>com.web.WithdrawServlet</servlet-class>
     </servlet>
 
+
+    <servlet-mapping>
+        <servlet-name>createAccountAmar</servlet-name>
+        <url-pattern>/createAmar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>findBalanceAmar</servlet-name>
+        <url-pattern>/findBalanceAmar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>accountDepositAmar</servlet-name>
+        <url-pattern>/makeDepositAmar</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteAccountAmar</servlet-name>
+        <url-pattern>/makeDeleteAmar</url-pattern>
+    </servlet-mapping>
     <servlet-mapping>
         <servlet-name>createAccount</servlet-name>
         <url-pattern>/create</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>findAccountBalance</servlet-name>
         <url-pattern>/findBalance</url-pattern>
