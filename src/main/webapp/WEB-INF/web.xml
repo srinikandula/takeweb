@@ -9,6 +9,26 @@
         <servlet-name>findAccountBalance</servlet-name>
         <servlet-class>com.web.FindBalanceServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>webSample</servlet-name>
+        <servlet-class>com.web.WebSampleServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deposit</servlet-name>
+        <servlet-class>com.web.DepositServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>webBalance</servlet-name>
+        <servlet-class>com.web.WebBalanceServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>delete</servlet-name>
+        <servlet-class>com.web.DeleteServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>withdraw</servlet-name>
+        <servlet-class>com.web.WithdrawServlet</servlet-class>
+    </servlet>
 
     <servlet-mapping>
         <servlet-name>createAccount</servlet-name>
@@ -17,5 +37,25 @@
     <servlet-mapping>
         <servlet-name>findAccountBalance</servlet-name>
         <url-pattern>/findBalance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>webSample</servlet-name>
+        <url-pattern>/webSample</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deposit</servlet-name>
+        <url-pattern>/deposit</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>webBalance</servlet-name>
+        <url-pattern>/webBalance</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>delete</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>withdraw</servlet-name>
+        <url-pattern>/withdraw</url-pattern>
     </servlet-mapping>
 </web-app>
