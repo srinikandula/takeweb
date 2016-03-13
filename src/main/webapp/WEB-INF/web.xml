@@ -43,7 +43,7 @@
     </servlet>
     <servlet>
         <servlet-name>KeeCreate</servlet-name>
-        <servlet-class>com.web.KeerthiCreate</servlet-class>
+        <servlet-class>com.web.keerthi.KeerthiCreate</servlet-class>
     </servlet>
 
 
