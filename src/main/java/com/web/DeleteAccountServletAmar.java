@@ -14,7 +14,7 @@ import java.util.Scanner;
 /**
  * Created by Amar on 3/10/2016.
  */
-@WebServlet(urlPatterns = {"/deleteAccountServletAmar"})
+//@WebServlet(urlPatterns = {"/deleteAccountServletAmar"})
 public class DeleteAccountServletAmar extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
