@@ -9,10 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by CrazyNaveen on 3/11/16.
@@ -21,18 +17,19 @@ import java.util.List;
 public class LoadServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-
+        //AccountDao dao = new AccountDao();
+        //dao.findAll(Integer.parseInt(id));
+        KeerthiAccount keerthiAccount = new KeerthiAccount();
+        DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
         String id = req.getParameter("id");
-
-        List<KeerthiAccount> accounts = loadAccounts(Integer.parseInt(id));
-        req.setAttribute("accounts", accounts);
+        keerthiAccount.setId(Integer.parseInt(id));
+        KeerthiAccount acc = dao.find(Integer.parseInt(id));
+        req.setAttribute("account", acc);
         RequestDispatcher rd = req.getRequestDispatcher("loadAccount.jsp");
-        PrintWriter pw = res.getWriter();
-        pw.write("This is load servlet");
         rd.forward(req, res);
     }
 
-    private List loadAccounts(int id) {
+    /*private List loadAccounts(int id) {
         PreparedStatement preparedStatement = null;
         ResultSet rs;
         Connection conn;
@@ -70,9 +67,9 @@ public class LoadServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-
         return list;
-    }
+    }*/
+
 }
 
 

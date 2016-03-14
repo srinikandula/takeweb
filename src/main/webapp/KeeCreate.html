@@ -12,6 +12,23 @@
             $( "#tabs" ).tabs();
         });
     </script>
+    <style>
+        #tab1 {
+            width: 250px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        tr,td{
+            padding: 5px;
+        }
+        #tab1 tr:nth-child(even){
+            background-color: #eee;
+        }
+        #tab1 tr:nth-child(odd){
+            background-color: #fff;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -24,7 +41,7 @@
     <div id="tabs-1">
         <p>
         <form action="keeCreate">
-            <table align="center">
+            <table id="tab1" align="center">
         <tr>
             <td>Id:</td>
             <td>

@@ -1,5 +1,7 @@
 package com.web.keerthi;
 
+import com.web.model.KeerthiAccount;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -7,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.*;
 
 /**
  * Created by CrazyNaveen on 3/11/16.
@@ -17,18 +17,26 @@ import java.sql.*;
 public class KeerthiUpdateServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        //AccountDao dao = new AccountDao();
+        DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
+        KeerthiAccount keerthiAccount = new KeerthiAccount();
         String id = req.getParameter("id");
         String name = req.getParameter("uname");
         String accNum = req.getParameter("accNum");
         String bal = req.getParameter("balance");
 
-        updateAccount(Integer.parseInt(id), name, Long.parseLong(accNum), Double.parseDouble(bal));
+        keerthiAccount.setId(Integer.parseInt(id));
+        keerthiAccount.setUserName(name);
+        keerthiAccount.setAccNumber(Long.parseLong(accNum));
+        keerthiAccount.setBalance(Double.parseDouble(bal));
+        dao.update(keerthiAccount);
+        //dao.updateAccount(Integer.parseInt(id), name, Long.parseLong(accNum), Double.parseDouble(bal));
 
         RequestDispatcher rd = req.getRequestDispatcher("/keeAccountList");
         rd.forward(req, res);
     }
 
-    private int updateAccount(int id,String name,long accNumber,double balance){
+    /*private int updateAccount(int id,String name,long accNumber,double balance){
         PreparedStatement preparedStatement = null;
         ResultSet rs;
         Connection conn;
@@ -62,5 +70,6 @@ public class KeerthiUpdateServlet extends HttpServlet {
             }
         }
         return 1;
-    }
+    }*/
+
 }
