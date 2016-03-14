@@ -45,6 +45,10 @@
         <servlet-name>withdraw</servlet-name>
         <servlet-class>com.web.WithdrawServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>myAccount</servlet-name>
+        <servlet-class>com.web.model.CreateMyAccountServlet</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -91,5 +95,9 @@
     <servlet-mapping>
         <servlet-name>withdraw</servlet-name>
         <url-pattern>/withdraw</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>myAccount</servlet-name>
+        <url-pattern>/myAcct</url-pattern>
     </servlet-mapping>
 </web-app>
