@@ -29,10 +29,10 @@
             out.print("<td> <input type='text' name='LastName' value="+account.getLastName()+"></td>" );
             out.print("</tr>");
             out.print("<tr>");
-            out.print("<td> <input type='text' name='Balance' value="+account.getBalance+"></td>" );
+            out.print("<td> <input type='text' name='Balance' value="+account.getBalance()+"></td>" );
             out.print("</tr>");
             out.print("<tr>");
-            out.print("<td> <input type='text' name='BankName' value="+account.getBankName+"></td>" );
+            out.print("<td> <input type='text' name='BankName' value="+account.getBankName()+"></td>" );
             out.print("</tr>");
         }
     %>
