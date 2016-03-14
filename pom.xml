@@ -101,11 +101,11 @@
             <scope>runtime</scope>
         </dependency>
         <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${taglibs.version}</version>
-            <scope>runtime</scope>
+        <groupId>javax.servlet</groupId>
+        <artifactId>jstl</artifactId>
+        <version>1.2</version>
         </dependency>
+
 
         <dependency>
             <groupId>javassist</groupId>

@@ -25,6 +25,26 @@
         <servlet-name>findAccountBalance</servlet-name>
         <servlet-class>com.web.FindBalanceServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>KeerthiCreateAccount</servlet-name>
+        <servlet-class>com.web.KeerthiCreateServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KeerthiReadData</servlet-name>
+        <servlet-class>com.web.KeerthiReadServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KeerthiUpdate</servlet-name>
+        <servlet-class>com.web.KeerthiUpdate</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KeerthiDelete</servlet-name>
+        <servlet-class>com.web.KeerthiDeleteAccount</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KeeCreate</servlet-name>
+        <servlet-class>com.web.keerthi.KeerthiCreate</servlet-class>
+    </servlet>
 
 
     <servlet-mapping>
@@ -52,4 +72,25 @@
         <servlet-name>findAccountBalance</servlet-name>
         <url-pattern>/findBalance</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KeerthiCreateAccount</servlet-name>
+        <url-pattern>/KeerthiCreate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KeerthiReadData</servlet-name>
+        <url-pattern>/KeerthiRead</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KeerthiUpdate</servlet-name>
+        <url-pattern>/KeerthiUpdate</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KeerthiDelete</servlet-name>
+        <url-pattern>/KeerthiDelete</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KeeCreate</servlet-name>
+        <url-pattern>/keeCreate</url-pattern>
+    </servlet-mapping>
+
 </web-app>

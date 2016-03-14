@@ -23,7 +23,7 @@
       out.print("<td>"+account.getFirstName()+"</td>");
       out.print("<td>"+account.getLastName()+"</td>");
       out.print("<td>"+account.getBalance()+"</td>");
-      out.print("<td><a href='updateAccountServlet'>Update</a></td>");
+      out.print("<td><a href='updateAccountServlet?id=\"+account.getId()+\"'>Update</a></td>");
       out.print("<td><a href='deleteAccountServlet?id="+account.getId()+"'>Delete</a></td>");
 
       out.print("</tr>");
