@@ -1,6 +1,7 @@
 package com.web.dao;
 
 import com.web.model.Account;
+import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,6 +10,7 @@ import java.util.List;
 /**
  * Created by skandula on 3/12/16.
  */
+@Service
 public class AccountDAO {
 
     public void createAccount(String firstName, String lastName, double balance, String id) {
