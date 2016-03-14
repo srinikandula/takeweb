@@ -1,6 +1,8 @@
 package com.web;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -12,6 +14,7 @@ import java.util.Scanner;
 /**
  * Created by Amar on 3/10/2016.
  */
+@WebServlet(urlPatterns = {"/deleteAccountServletAmar"})
 public class DeleteAccountServletAmar extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
@@ -19,8 +22,8 @@ public class DeleteAccountServletAmar extends HttpServlet {
         String accountNumberString = request.getParameter("accnum");
         System.out.println("Create Account servlet is called with values "+ accountNumberString);
         deleteAccount(Integer.parseInt(accountNumberString));
-        PrintWriter pw = resp.getWriter();
-        pw.write("Account has updated Successfully");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountListServletAmar");
+        dispatcher.forward(request,resp);
     }
     public void deleteAccount(int accountNumber){
         try {
