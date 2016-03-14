@@ -1,6 +1,7 @@
 package com.web.dao;
 
 import com.web.model.Account;
+import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -9,7 +10,17 @@ import java.util.List;
 /**
  * Created by skandula on 3/12/16.
  */
+@Service
 public class AccountDAOImpl implements TakeWebDAO<Account> {
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    private String message;
 
     public void create(Account account) {
         try {

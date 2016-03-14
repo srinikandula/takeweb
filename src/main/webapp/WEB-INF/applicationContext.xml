@@ -6,4 +6,8 @@
     <bean id="helloWorld" class="com.web.HelloWorld">
         <property name="message" value="Hello World!"/>
     </bean>
+    <bean id="accountDAO" class="com.web.dao.AccountDAO">
+
+    </bean>
+
 </beans>
