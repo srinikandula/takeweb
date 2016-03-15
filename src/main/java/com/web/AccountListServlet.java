@@ -6,9 +6,14 @@ import com.web.dao.AccountDAOImpl;
 import com.web.dao.AccountOracleDAOImpl;
 import com.web.dao.TakeWebDAO;
 import com.web.model.Account;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -24,6 +29,7 @@ import java.util.List;
  */
 @WebServlet(urlPatterns = {"/accountListServlet"})
 public class AccountListServlet extends HttpServlet {
+
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
 
@@ -33,7 +39,11 @@ public class AccountListServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("AccountListServlet: goGet() is called");
-        TakeWebDAO<Account> accountDAO = new AccountDAOImpl();
+        ServletContext ctxt = req.getSession().getServletContext();
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+
+        //EmployeeJDBCDAO dao =(EmployeeJDBCDAO)appContext.getBean("empDao");
+        AccountDAO accountDAO =(AccountDAO)appContext.getBean("accountDAO");
         List<Account> accounts = accountDAO.findAll();
         req.setAttribute("accounts", accounts);
         RequestDispatcher dispatcher = req.getRequestDispatcher("accountsList.jsp");
