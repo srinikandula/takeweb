@@ -1,5 +1,7 @@
 package com.web;
 
+import com.web.daoExample.MyAccountDAO;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,13 +20,14 @@ import java.util.List;
 public class MyAccountListServlet extends HttpServlet {
 
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<MyAccount> accounts = checkAccounts();
+        MyAccountDAO myAccountDAO = new MyAccountDAO();
+        List<MyAccount> accounts = myAccountDAO.findAll();
         req.setAttribute("accounts", accounts);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("MyAccountList.jsp");
         requestDispatcher.forward(req,resp);
     }
 
-    private List<MyAccount> checkAccounts(){
+   /* private List<MyAccount> checkAccounts(){
         List<MyAccount> accounts = new ArrayList<>();
         try {
             Class.forName("org.postgresql.Driver");
@@ -48,6 +51,6 @@ public class MyAccountListServlet extends HttpServlet {
             e.printStackTrace();
         }
         return accounts;
-    }
+    }*/
 
 }

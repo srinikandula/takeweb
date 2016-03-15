@@ -1,6 +1,11 @@
 package com.web.model;
 
-import com.web.daoExample.UpdateDao;
+//import com.web.daoExample.UpdateDao;
+
+import com.web.MyAccount;
+import com.web.daoExample.MyAccountDAO;
+import com.web.daoExample.MyAccountDAOImpl;
+import com.web.daoExample.TakeWebDAO;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -23,11 +28,18 @@ public class UpdateMyAccountServlet extends HttpServlet {
         String lastName = req.getParameter("LastName");
         String balance = req.getParameter("Balance");
         String bankName = req.getParameter("BankName");
-        toUpdate(Integer.parseInt(id), firtName, lastName, Integer.parseInt(balance), bankName);
+        MyAccount account=new MyAccount();
+        account.setId(Integer.parseInt(id));
+        account.setFirstName(firtName);
+        account.setLastName(lastName);
+        account.setBalance(Integer.parseInt(balance));
+        account.setBankName(bankName);
+        TakeWebDAO myAccountDAO = new MyAccountDAOImpl();
+        myAccountDAO.update(account);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/MyAccountListServlet");
         requestDispatcher.forward(req, resp);
     }
-        public int toUpdate(int id,String firstName,String lastName, int balance, String bankName){
+       /* public int toUpdate(int id,String firstName,String lastName, int balance, String bankName){
     try {
         Class.forName("org.postgresql.Driver");
         Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgis_22_sample", "postgres", "123456");
@@ -47,5 +59,5 @@ public class UpdateMyAccountServlet extends HttpServlet {
         e.printStackTrace();
     }
     return 1;
-}
+}*/
 }

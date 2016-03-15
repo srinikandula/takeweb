@@ -18,38 +18,47 @@ public class MyAccount implements Serializable {
     }
 
     public void setId(int id) {
+
         this.id = id;
     }
 
     public String getFirstName() {
+
         return firstName;
     }
 
     public void setFirstName(String firstName) {
+
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    public String getLastName()
+    {
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName)
+    {
         this.lastName = lastName;
     }
 
-    public int getBalance() {
+    public int getBalance()
+    {
         return balance;
     }
 
-    public void setBalance(int balance) {
+    public void setBalance(int balance)
+    {
         this.balance = balance;
     }
 
-    public String getBankName() {
+    public String getBankName()
+    {
         return bankName;
     }
 
-    public void setBankName(String bankName) {
+    public void setBankName(String bankName)
+    {
         this.bankName = bankName;
     }
 }

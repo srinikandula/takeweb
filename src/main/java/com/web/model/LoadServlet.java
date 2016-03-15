@@ -22,7 +22,8 @@ import java.util.List;
 public class LoadServlet extends HttpServlet{
 
     protected  void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-       String id = req.getParameter("id");
+
+        String id = req.getParameter("id");
         MyAccount accounts = loadMyAccount(Integer.parseInt(id));
         req.setAttribute("accounts",accounts);
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("loadMyAccount.jsp");
@@ -32,6 +33,8 @@ public class LoadServlet extends HttpServlet{
     }
 
     private MyAccount loadMyAccount(int id) {
+
+
         List<MyAccount> list = new ArrayList<>();
         MyAccount account = new MyAccount();
         try {

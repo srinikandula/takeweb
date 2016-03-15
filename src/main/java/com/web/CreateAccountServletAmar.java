@@ -1,5 +1,6 @@
 package com.web;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +23,8 @@ public class CreateAccountServletAmar extends HttpServlet {
         String balanceString = request.getParameter("balance");
         System.out.println("Create Account servlet is called with values "+ accountNumberString+firstName+lastName + balanceString);
         createAccount(Integer.parseInt(accountNumberString), firstName, lastName, Double.parseDouble(balanceString));
-        PrintWriter pw = resp.getWriter();
-        pw.write("Account has created Successfully");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/accountListServletAmar");
+        dispatcher.forward(request,resp);
     }
     private void createAccount(int accountNumber, String firstName, String lastName, double balance) {
         try {

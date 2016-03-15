@@ -1,5 +1,8 @@
 package com.web;
 
+import com.web.daoExample.MyAccountDAOImpl;
+import com.web.daoExample.TakeWebDAO;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,13 +22,18 @@ import java.sql.SQLException;
 public class DeleteMyAccountServlet extends HttpServlet {
 
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-     String id = req.getParameter("id");
-        toDelete(Integer.parseInt(id));
+
+        String id = req.getParameter("id");
+        MyAccount account=new MyAccount();
+        account.setId(Integer.parseInt(id));
+        TakeWebDAO myAccountDAO = new MyAccountDAOImpl();
+        myAccountDAO.delete(account);
+        //delete(Integer.parseInt(id));
         RequestDispatcher requestDispatcher = req.getRequestDispatcher("/MyAccountListServlet");
         requestDispatcher.forward(req,resp);
     }
 
-    private void toDelete(int id) {
+    /*private void toDelete(int id) {
         try {
             Class.forName("org.postgresql.Driver");
             Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgis_22_sample", "postgres", "123456");
@@ -39,5 +47,5 @@ public class DeleteMyAccountServlet extends HttpServlet {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
