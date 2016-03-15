@@ -27,7 +27,7 @@ import java.util.List;
 /**
  * Created by skandula on 3/10/16.
  */
-@WebServlet(urlPatterns = {"/accountListServlet"})
+@WebServlet(urlPatterns = {"/accountListServlet",})
 public class AccountListServlet extends HttpServlet {
 
     @Override
@@ -40,10 +40,10 @@ public class AccountListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("AccountListServlet: goGet() is called");
         ServletContext ctxt = req.getSession().getServletContext();
-        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        //ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
 
         //EmployeeJDBCDAO dao =(EmployeeJDBCDAO)appContext.getBean("empDao");
-        AccountDAO accountDAO =(AccountDAO)appContext.getBean("accountDAO");
+        AccountDAO accountDAO = new AccountDAO();
         List<Account> accounts = accountDAO.findAll();
         req.setAttribute("accounts", accounts);
         RequestDispatcher dispatcher = req.getRequestDispatcher("accountsList.jsp");
