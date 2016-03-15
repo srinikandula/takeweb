@@ -20,6 +20,23 @@
             $( "#tabs" ).tabs();
         });
     </script>
+    <style>
+        #tab1 {
+            width: 250px;
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+        tr,td{
+            padding: 5px;
+        }
+        #tab1 tr:nth-child(even){
+            background-color: #eee;
+        }
+        #tab1 tr:nth-child(odd){
+            background-color: #fff;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -33,10 +50,10 @@
         <p>
 --%>
        <form action="keerthiUpdate">
-            <table align="center">
+            <table id="tab1" align="center">
                 <%
-                    List<KeerthiAccount> list = (List<KeerthiAccount>)request.getAttribute("accounts");
-                    for (KeerthiAccount account:list){
+                    KeerthiAccount account = (KeerthiAccount) request.getAttribute("account");
+                    //for (KeerthiAccount account : acc){
                         out.print("<tr>");
                         out.print("<td>Id:</td>");
                         out.print("<td> <input type='text' name='id' readonly value="+account.getId() +"></td>");
@@ -46,7 +63,7 @@
                         out.print("<td> <input  type=\"text\" name=\"uname\" value="+account.getUserName() +"></td>");
                         out.print("</tr>");
                         out.print("<tr>");
-                        out.print("<td>Account Number</td>");
+                        out.print("<td>Account Number:</td>");
                         out.print("<td> <input type=\"text\" name=\"accNum\" value="+account.getAccNumber()+"> </td>");
                         out.print("</tr>");
                         out.print("<tr>");
@@ -54,10 +71,10 @@
                         out.print("<td> <input type=\"text\" name=\"balance\" value="+account.getBalance()+"></td>");
                         out.print("</tr>");
                         out.print("</tr>");
-                        out.print("<td colspan='1'>  <input type=\"submit\" name=\"submit\" value=\"Update\">");
-                        out.print("<tr>");
+                        out.print("<td colspan='2'> <input type=\"submit\" name=\"submit\" value=\"Update\"> </td>");
+                        out.print("</tr>");
 
-                    }
+                   // }
                 %>
 
                     <%--<%
