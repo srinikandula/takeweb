@@ -17,7 +17,7 @@ import java.util.List;
  * Created by Amar on 3/14/2016.
  */
 
-    @WebServlet(urlPatterns = {"/accountListServletAmar"})
+    //@WebServlet(urlPatterns = {"/accountListServletAmar"})
     public class AccountListServletAmar extends HttpServlet {
         @Override
         protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

@@ -9,5 +9,8 @@
     <bean id="accountDAO" class="com.web.dao.AccountDAO">
 
     </bean>
+    <bean id="amarAccountDAO" class="com.web.dao.AmarAccountDAO">
+
+    </bean>
 
 </beans>

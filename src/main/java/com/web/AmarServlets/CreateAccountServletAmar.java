@@ -36,7 +36,7 @@ import java.util.List;
             account.setFirstName(firstName);
             account.setLastName(lastName);
             account.setBalance(Double.parseDouble(balanceString));
-            System.out.println("Create Account servlet is called with values "+ accountNumberString+firstName+lastName + balanceString);
+            System.out.println("Create Account servlet is called in AmarServlets with values "+ accountNumberString+firstName+lastName + balanceString);
             dao.create(account);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/accountListServletAmar");
             dispatcher.forward(request,resp);

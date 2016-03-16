@@ -15,7 +15,7 @@ import java.io.IOException;
 /**
  * Created by Amar on 3/14/2016.
  */
-    @WebServlet(urlPatterns = {"/deleteAccountServletAmar"})
+    //@WebServlet(urlPatterns = {"/deleteAccountServletAmar"})
     public class DeleteAccountServletAmar extends HttpServlet {
     AmarTakeWebDAO<AmarAccount> dao = new AmarAccountImpl();
         @Override

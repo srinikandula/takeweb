@@ -2,6 +2,7 @@ package com.web.dao;
 
 import com.web.model.Account;
 import com.web.model.AmarAccount;
+import org.springframework.stereotype.Service;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 /**
  * Created by Amar on 3/14/2016.
  */
+@Service
 public class AmarAccountDAO {
     public void createAccount(int accountNumber, String firstName, String lastName, double balance) {
         try {
@@ -132,7 +134,7 @@ public class AmarAccountDAO {
         }
 
     }
-    private List<AmarAccount> findAllAccounts() {
+    public List<AmarAccount> findAllAccounts() {
         List<AmarAccount> accounts = new ArrayList<>();
         try {
             //load the driver

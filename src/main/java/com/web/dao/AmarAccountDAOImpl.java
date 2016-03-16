@@ -10,9 +10,8 @@ import java.util.List;
 /**
  * Created by Amar on 3/14/2016.
  */
-
-public class AmarAccountImpl implements AmarTakeWebDAO<AmarAccount> {
-
+@Service
+public class AmarAccountDAOImpl implements AmarTakeWebDAO<AmarAccount>{
     @Override
     public void update(AmarAccount account) {
         try {
@@ -156,4 +155,5 @@ public class AmarAccountImpl implements AmarTakeWebDAO<AmarAccount> {
         }
 
     }
+
 }
