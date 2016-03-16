@@ -25,7 +25,7 @@
     <div id="div-regForm">
         <div class="form-title">Sign Up</div>
         <div class="form-sub-title">It's free and anyone can join</div>
-        <form id="regForm" action="signUp" method="post">
+        <form id="regForm" action="signUpServletAmar" method="post">
             <table>
                 <tbody>
                 <tr>

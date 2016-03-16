@@ -18,7 +18,7 @@ public class LoginServletAmar extends HttpServlet {
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
 
-        System.out.println("AccountListServlet: init() is called");
+        System.out.println("Login Servlet: init() is called");
     }
 
     @Override

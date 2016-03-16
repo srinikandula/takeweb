@@ -2,12 +2,13 @@ package com.web.AmarServlets;
 
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
+import javax.servlet.annotation.WebServlet;
 import java.io.IOException;
 
 /**
  * Created by Amar on 3/16/2016.
  */
-
+@WebServlet(urlPatterns = {"/loginServletAmar",})
 public class LoginFilterServletAmar implements javax.servlet.Filter{
 
     @Override
