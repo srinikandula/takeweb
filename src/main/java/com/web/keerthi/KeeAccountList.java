@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -21,13 +19,14 @@ public class KeeAccountList extends HttpServlet {
 
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        List<KeerthiAccount> accounts = accountList();
+        DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
+        List<KeerthiAccount> accounts = dao.findAll();
         req.setAttribute("accounts", accounts);
         RequestDispatcher rd = req.getRequestDispatcher("kaccountList.jsp");
         rd.forward(req, res);
     }
 
-    private List<KeerthiAccount> accountList() {
+    /*private List<KeerthiAccount> accountList() {
         List<KeerthiAccount> list = new ArrayList<>();
         Statement statement= null ;
         ResultSet rs = null;
@@ -71,7 +70,8 @@ public class KeeAccountList extends HttpServlet {
         }
 
         return list;
-    }
+    }*/
+
     }
 
 
