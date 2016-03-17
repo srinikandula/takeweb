@@ -22,6 +22,7 @@ public class UserDAO implements TakeWebDAO<User>{
             ResultSet rs = preparedStatement.executeQuery();
             if(rs.next()) {
                 user = new User();
+                user.setId(rs.getInt("id"));
                 user.setUserName(rs.getString("username"));
                 user.setPassword(rs.getString("password"));
             }

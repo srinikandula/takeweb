@@ -1,5 +1,6 @@
 <%@ page import="com.web.model.Account" %>
 <%@ page import="java.util.List" %>
+<%@ page import="com.web.model.User" %>
 <%--
   Created by IntelliJ IDEA.
   User: skandula
@@ -13,6 +14,16 @@
     <title></title>
 </head>
 <body>
+
+<%
+  Object obj = session.getAttribute("user");
+  if(obj != null){
+    User user = (User)obj;
+    out.print("<p> User logged in <b>"+user.getUserName()+"  <a href=\"logout\">Logout</a></p>");
+  }
+%>
+
+
 <table border="1" style="width:100%">
   <%
     List<Account> accounts = (List<Account>)request.getAttribute("accounts");
