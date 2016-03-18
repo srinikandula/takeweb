@@ -1,5 +1,6 @@
     <%@ page import="java.util.List" %>
-    <%@ page import="com.web.model.KeerthiAccount" %><%--
+    <%@ page import="com.web.model.KeerthiAccount" %>
+    <%@ page import="com.web.keerthi.KeerthiUser" %><%--
       Created by IntelliJ IDEA.
       User: CrazyNaveen
       Date: 3/10/16
@@ -20,6 +21,7 @@
                 border-collapse: collapse;
                 cellpadding:"1";
                 cellspacing:"1";
+                width:100%;
             }
             tr,td{
                 padding: 10px;
@@ -34,6 +36,8 @@
         </style>
     </head>
     <body>
+
+    <p>User logged in <%=((KeerthiUser)session.getAttribute("loggedinUser")).getUserName()%> <a href="logoutServlet">Logout</a> </p>
     <table id="tab1">
     <%
          List<KeerthiAccount> list = (List<KeerthiAccount>)request.getAttribute("accounts");
@@ -53,6 +57,8 @@
             out.print("<td>" +account.getBalance() +"</td>");
             out.print("<td><a href='keeLoadList?id="+account.getId()+"'>Update</a></td>");
             out.print("<td><a href='keerthiDelete?id="+account.getId()+"'>Delete</a></td>");
+            out.print("<td><a href='keeCreate?id="+account.getId()+"'></a></td>");
+
             out.print("</tr>");
         }
     %>

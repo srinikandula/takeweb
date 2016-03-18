@@ -8,6 +8,7 @@ public class KeerthiAccount {
     private String userName;
     private long accNumber;
     private double balance;
+    private String createdBy;
 
     public int getId() {
         return id;
@@ -39,5 +40,13 @@ public class KeerthiAccount {
 
     public void setBalance(double balance) {
         this.balance = balance;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 }

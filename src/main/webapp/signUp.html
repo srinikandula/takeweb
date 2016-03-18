@@ -1,0 +1,104 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Keerthi SignUp Page</title>
+        <link rel="stylesheet" href="js/ui/1.11.4/themes/smoothness/jquery-ui.css">
+        <script src="js/jquery-1.10.2.js"></script>
+        <script src="js/ui/1.11.4/jquery-ui.js"></script>
+        <style>
+        #btn{
+        background-color:#2b542c;
+        color:#f7f7f7;
+        }
+            #table {
+                border: 1px solid black;
+                border-collapse: collapse;
+
+            }
+        tr, td{
+            padding:5px;
+            border-collapse: collapse;
+        }
+        </style>
+    </head>
+    <body>
+    <div>
+    <form action="signupServlet" method="post">
+        <table id="table">
+            <tr>
+                <td>
+                    User Name:
+                </td>
+                <td>
+                    <input size="30" type="text" name="uname">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Gender:
+                </td>
+                <td>
+                    <input type="radio" name="gender">Male
+                    <input type="radio" name="gender">Female
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Contact Number:
+                </td>
+                <td>
+                    <input size="30" type="tel" name="phn">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Email id:
+                </td>
+                <td>
+                    <input size="30" type="email" name="email">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Address:
+                </td>
+                <td>
+                        <select name = "">
+                            <option value="a"></option>
+                            <option value="b">New Jersey</option>
+                            <option value="c">New York</option>
+                            <option value="d">Georgia</option>
+                            <option value="e">Florida</option>
+                            <option value="f">California</option>
+                        </select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                Password:
+                </td>
+                <td>
+                    <input size="30" type="password" name="pswd">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                Confirm Password:
+                </td>
+                <td>
+                    <input size="30" type="password" name="pwd">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input id="btn" size="20" type="submit" name="submit" value="Submit">
+                </td>
+            </tr>
+
+        </table>
+
+    </form>
+    </div>
+    </body>
+    </html>

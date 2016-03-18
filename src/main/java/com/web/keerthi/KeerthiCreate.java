@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 //@WebServlet(urlPatterns = {"/keerthiCreate"})
 public class KeerthiCreate extends HttpServlet {
-    protected void service(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws IOException, ServletException {
         AccountDao account = new AccountDao();
         String id = req.getParameter("id");
         String userName = req.getParameter("uname");
@@ -23,14 +23,23 @@ public class KeerthiCreate extends HttpServlet {
         KeerthiAccount keerthiAccount =new KeerthiAccount();
         keerthiAccount.setId(Integer.parseInt(id));
         keerthiAccount.setUserName(userName);
-        keerthiAccount.setAccNumber(Long.parseLong(accNumber));
+       // keerthiAccount.setAccNumber(Long.parseLong(accNumber));
         keerthiAccount.setBalance(Double.parseDouble(balance));
         //account.createAccount(Integer.parseInt(id), userName, Long.parseLong(accNumber), Double.parseDouble( balance));
+        KeerthiUser user = (KeerthiUser) (req.getSession().getAttribute("loggedinUser"));
+        String userName1 = user.getUserName();
 
+        keerthiAccount.setCreatedBy(userName1);
         DaoInterface<KeerthiAccount> accountDao = new AccountDaoImpl();
         accountDao.create(keerthiAccount);
-        RequestDispatcher rd = req.getRequestDispatcher("/keeAccountList");
+
+        RequestDispatcher rd = req.getRequestDispatcher("keeAccountList");
         rd.forward(req,res);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        doPost(req,res);
     }
 
     /*private void createAccount(int id,String name, long accNumber,double balance){
