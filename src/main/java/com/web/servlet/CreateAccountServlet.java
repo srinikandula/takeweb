@@ -1,7 +1,7 @@
 /**
  * Created by skandula on 3/9/16.
  */
-package com.web;
+package com.web.servlet;
 
 import com.web.dao.AccountDAO;
 import com.web.dao.AccountDAOImpl;
@@ -11,16 +11,12 @@ import com.web.model.Account;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-
+@WebServlet(urlPatterns = {"/createAccount"})
 public class CreateAccountServlet extends HttpServlet{
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {

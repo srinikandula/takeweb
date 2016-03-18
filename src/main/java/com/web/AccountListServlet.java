@@ -51,6 +51,11 @@ public class AccountListServlet extends HttpServlet {
     }
 
     @Override
+    protected void doPost(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws ServletException, IOException {
+        doGet(httpServletRequest,httpServletResponse);
+    }
+
+    @Override
     public void destroy() {
         System.out.println("AccountListServlet: destroy() is called");
     }

@@ -1,5 +1,8 @@
 package com.web;
 
+import com.web.dao.AmarAccountDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -14,6 +17,8 @@ import java.util.Scanner;
  * Created by Amar on 3/10/2016.
  */
 public class CreateAccountServletAmar extends HttpServlet {
+    @Autowired
+    private AmarAccountDAO amarAccountDAO;
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp);

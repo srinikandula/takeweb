@@ -1,6 +1,12 @@
 package com.web;
 
+import com.web.dao.AmarAccountDAO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
+
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,16 +22,22 @@ import java.util.Scanner;
  */
 @WebServlet(urlPatterns = {"/deleteAccountServletAmar"})
 public class DeleteAccountServletAmar extends HttpServlet {
+    @Autowired
+    private AmarAccountDAO amarAccountDAO;
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp);
         String accountNumberString = request.getParameter("accnum");
+        ServletContext ctxt = request.getSession().getServletContext();
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        AmarAccountDAO amarAccountDAO =(AmarAccountDAO)appContext.getBean("amarAccountDAO");
+
         System.out.println("Create Account servlet is called with values "+ accountNumberString);
-        deleteAccount(Integer.parseInt(accountNumberString));
+        amarAccountDAO.deleteAccount(Integer.parseInt(accountNumberString));
         RequestDispatcher dispatcher = request.getRequestDispatcher("/accountListServletAmar");
         dispatcher.forward(request,resp);
     }
-    public void deleteAccount(int accountNumber){
+   /* public void deleteAccount(int accountNumber){
         try {
             Class.forName("org.postgresql.Driver");
             String URL = "jdbc:postgresql://localhost:5432/postgres"; //HOST/DATABASE
@@ -54,5 +66,5 @@ public class DeleteAccountServletAmar extends HttpServlet {
             e.printStackTrace();
         }
 
-    }
+    }*/
 }
