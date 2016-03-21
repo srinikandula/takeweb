@@ -1,5 +1,6 @@
     package com.web.keerthi;
 
+
     import com.web.model.KeerthiAccount;
 
     import java.sql.*;
@@ -10,15 +11,17 @@
      * Created by CrazyNaveen on 3/12/16.
      */
     public class AccountDao {
-        public void createAccount(int id, String userName, long accNumber , double balance ) {
+        public void createAccount(KeerthiAccount account) {
+
             try {
                 Class.forName("org.postgresql.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop", "postgres", "keerthi");
-                PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO Accounts( id, name, acc_num, balance) VALUES (?,?,?,?)");
-                preparedStatement.setInt(1, id);
-                preparedStatement.setString(2, userName);
-                preparedStatement.setDouble(4, balance);
-                preparedStatement.setLong(3, accNumber);
+                PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO Accounts( id, name, acc_num, balance, created_by) VALUES (?,?,?,?,?)");
+                preparedStatement.setInt(1, account.getId());
+                preparedStatement.setString(2, account.getUserName());
+                 preparedStatement.setDouble(4, account.getBalance());
+                preparedStatement.setLong(3, account.getAccNumber());
+                preparedStatement.setString(5,account.getCreatedBy());
                 int insertedRecords = preparedStatement.executeUpdate();
                 preparedStatement.close();
                 conn.close();
@@ -28,7 +31,8 @@
                 e.printStackTrace();
             }
         }
-        public void createAccount(KeerthiAccount account) {
+
+        /*public void createAccount(KeerthiAccount account) {
             try {
                 Class.forName("org.postgresql.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop", "postgres", "keerthi");
@@ -45,7 +49,7 @@
             } catch (SQLException e) {
                 e.printStackTrace();
             }
-        }
+        }*/
         public void updateAccount(KeerthiAccount account){
             PreparedStatement preparedStatement = null;
             ResultSet rs;

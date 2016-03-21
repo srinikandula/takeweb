@@ -3,6 +3,7 @@ package com.web.keerthi;
 import com.web.model.KeerthiAccount;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,12 +19,19 @@ import java.util.List;
 public class KeeAccountList extends HttpServlet {
 
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        ServletContext servletContext = req.getSession().getServletContext();
         DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
         List<KeerthiAccount> accounts = dao.findAll();
         req.setAttribute("accounts", accounts);
         RequestDispatcher rd = req.getRequestDispatcher("kaccountList.jsp");
         rd.forward(req, res);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        doGet(req,res);
+
     }
 
     /*private List<KeerthiAccount> accountList() {
