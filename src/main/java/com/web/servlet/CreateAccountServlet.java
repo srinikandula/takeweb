@@ -10,6 +10,7 @@ import com.web.model.Account;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,8 +38,8 @@ public class CreateAccountServlet extends HttpServlet{
         account.setFirstName(firstName);
         account.setLastName(lname);
         account.setBalance(Double.parseDouble(balanceString));
-
-        AccountDAO accountDAO = new AccountDAO();
+        ServletContext context = req.getServletContext();
+        AccountDAO accountDAO = new AccountDAO(context);
         accountDAO.createAccount(firstName, lname, Double.parseDouble(balanceString), id);
         dao.create(account);
 

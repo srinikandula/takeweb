@@ -9,9 +9,10 @@ import java.io.IOException;
  */
 //@WebFilter(urlPatterns = {"/accountListServlet","/deleteAccountServlet"})
 public class AccountListFilter implements javax.servlet.Filter {
+
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
-
+        String param = filterConfig.getInitParameter("param");
     }
 
     @Override

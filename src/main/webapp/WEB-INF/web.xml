@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
-    <!--
-        <filter>
-            <filter-name>userNameCheckFilter</filter-name>
-            <filter-class>com.web.filter.AccountListFilter</filter-class>
-        </filter>
-        <filter>
-            <filter-name>testFilter</filter-name>
-            <filter-class>com.web.TestFilter</filter-class>
-        </filter>
-        <filter-mapping>
-            <filter-name>testFilter</filter-name>
-            <url-pattern>/accountListServlet</url-pattern>
-        </filter-mapping>
-        <filter-mapping>
-            <filter-name>userNameCheckFilter</filter-name>
-            <url-pattern>/accountListServlet</url-pattern>
-        </filter-mapping>-->
 
+    <context-param>
+        <param-name>jdbcURL</param-name>
+        <param-value>jdbc:postgresql://localhost:5432/postgres</param-value>
+    </context-param>
+    <context-param>
+        <param-name>username</param-name>
+        <param-value>postgres</param-value>
+    </context-param>
 
+    <filter>
+        <filter-name>userNameCheckFilter</filter-name>
+        <filter-class>com.web.filter.AccountListFilter</filter-class>
+
+    </filter>
+    <filter>
+        <filter-name>testFilter</filter-name>
+        <filter-class>com.web.TestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>testFilter</filter-name>
+        <url-pattern>/accountListServlet</url-pattern>
+    </filter-mapping>
+    <filter-mapping>
+        <filter-name>userNameCheckFilter</filter-name>
+        <url-pattern>/accountListServlet</url-pattern>
+    </filter-mapping>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
     <servlet>
         <servlet-name>createAccountAmar</servlet-name>
         <servlet-class>com.web.CreateAccountServletAmar</servlet-class>
