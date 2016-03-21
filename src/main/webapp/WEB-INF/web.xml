@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
-<<<<<<< HEAD
+
 
     <web-app>
 
@@ -13,10 +13,10 @@
         <filter-class>com.web.keerthi.FilterTwo</filter-class>
     </filter>-->
 
-    <filter>
+   <!-- <filter>
         <filter-name>userNameCheckFilter</filter-name>
         <filter-class>com.web.AccountListFilter</filter-class>
-    </filter>
+    </filter>-->
     <filter>
         <filter-name>testFilter</filter-name>
         <filter-class>com.web.TestFilter</filter-class>
@@ -25,10 +25,10 @@
         <filter-name>testFilter</filter-name>
         <url-pattern>/accountListServlet</url-pattern>
     </filter-mapping>
-    <filter-mapping>
+   <!-- <filter-mapping>
         <filter-name>userNameCheckFilter</filter-name>
         <url-pattern>/accountListServlet</url-pattern>
-    </filter-mapping>
+    </filter-mapping>-->
     <!--<filter-mapping>
         <filter-name>keerthiLogin</filter-name>
         <url-pattern>/loginServlet</url-pattern>
@@ -39,8 +39,6 @@
     </filter-mapping>
 -->
 
-=======
-<web-app>
     <!--
         <filter>
             <filter-name>userNameCheckFilter</filter-name>
@@ -58,7 +56,7 @@
             <filter-name>userNameCheckFilter</filter-name>
             <url-pattern>/accountListServlet</url-pattern>
         </filter-mapping>-->
->>>>>>> 67f9579f950c31b024aff4c22f563104dabf52f5
+
 
 
     <servlet>
@@ -121,14 +119,12 @@
         <servlet-name>deleteAccountAmar</servlet-name>
         <url-pattern>/makeDeleteAmar</url-pattern>
     </servlet-mapping>
-<<<<<<< HEAD
-    <servlet-mapping>
+
+   <!-- <servlet-mapping>
         <servlet-name>createAccount</servlet-name>
         <url-pattern>/create</url-pattern>
-    </servlet-mapping>
-=======
+    </servlet-mapping>-->
 
->>>>>>> 67f9579f950c31b024aff4c22f563104dabf52f5
     <servlet-mapping>
         <servlet-name>findAccountBalance</servlet-name>
         <url-pattern>/findBalance</url-pattern>
@@ -154,14 +150,9 @@
         <url-pattern>/keeCreate</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-<<<<<<< HEAD
         <welcome-file>keerthiLogin.html</welcome-file>
     </welcome-file-list>
 
 
-=======
-        <welcome-file>login.html</welcome-file>
-    </welcome-file-list>
->>>>>>> 67f9579f950c31b024aff4c22f563104dabf52f5
 </web-app>
 
