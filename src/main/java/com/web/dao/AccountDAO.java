@@ -18,8 +18,19 @@ public class AccountDAO {
     private String userName;
     private String password;
 
+    private String message;
     //dependency
     private DataSource dataSource;
+
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
     public DataSource getDataSource() {
         return dataSource;
     }
@@ -32,11 +43,7 @@ public class AccountDAO {
     public AccountDAO(){
 
     }
-    public AccountDAO(ServletContext ctxt){
-        this.url = ctxt.getInitParameter("jdbcURL");
-        this.userName = ctxt.getInitParameter("username");
-        this.password = ctxt.getInitParameter("jdbcURL");
-    }
+
     public Connection getConnection() {
         Connection connection = null;
         try {
@@ -59,7 +66,7 @@ public class AccountDAO {
             long start = System.currentTimeMillis();
             connection = dataSource.getConnection();
             long end = System.currentTimeMillis();
-            System.out.println("non pooled connection took "+ (end-start));
+            System.out.println("non pooled connection took " + (end - start));
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -68,7 +75,7 @@ public class AccountDAO {
     public void createAccount(String firstName, String lastName, double balance, String id) {
         try {
             //load the driver
-            Connection conn = getConnection();
+            Connection conn = getPooledConnection();
             PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO Accounts( firstname, lastname, balance, id) VALUES (?, ?, ?,?)");
             preparedStatement.setString(1, firstName);
             preparedStatement.setString(2, lastName);
@@ -84,7 +91,7 @@ public class AccountDAO {
     public void createAccount(Account account) {
         try {
             //load the driver
-            Connection conn = getConnection();
+            Connection conn = getPooledConnection();
             PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO Accounts( firstname, lastname, balance, id) VALUES (?, ?, ?,?)");
             preparedStatement.setString(1, account.getFirstName());
             preparedStatement.setString(2, account.getLastName());
@@ -103,6 +110,26 @@ public class AccountDAO {
     public void deleteAccount(Account account){
 
     }
+    public void deleteAccount(int accountId){
+        Connection connection = getPooledConnection();
+        PreparedStatement preparedStatement = null;
+        try {
+            preparedStatement = connection.prepareStatement("delete from accounts where id =?");
+            preparedStatement.setInt(1, accountId);
+            int insertedRecords = preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }finally {
+            try {
+                preparedStatement.close();
+                connection.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
     public Account findAccount(int id){
 
         return null;
@@ -112,7 +139,7 @@ public class AccountDAO {
         List<Account> accounts = new ArrayList<>();
         try {
             //load the driver
-            Connection conn = getConnection();
+            Connection conn = getPooledConnection();
             Statement statement = conn.createStatement();
             ResultSet rs = statement.executeQuery("select * from accounts");
             while(rs.next()){

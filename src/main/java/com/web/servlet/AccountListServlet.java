@@ -1,14 +1,11 @@
-package com.web;
+package com.web.servlet;
 
 
+import com.web.bean.PrototypeBean;
+import com.web.bean.SingletonBean;
 import com.web.dao.AccountDAO;
-import com.web.dao.AccountDAOImpl;
-import com.web.dao.AccountOracleDAOImpl;
-import com.web.dao.TakeWebDAO;
 import com.web.model.Account;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
@@ -20,8 +17,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,10 +35,14 @@ public class AccountListServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         System.out.println("AccountListServlet: goGet() is called");
         ServletContext ctxt = req.getSession().getServletContext();
-        //ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
-
-        //EmployeeJDBCDAO dao =(EmployeeJDBCDAO)appContext.getBean("empDao");
-        AccountDAO accountDAO = new AccountDAO(req.getServletContext());
+        //get bean factory
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        //look up the bean
+        AccountDAO accountDAO = (AccountDAO)appContext.getBean("accountDAO");
+        PrototypeBean prototypeBean = (PrototypeBean)appContext.getBean("prototypeBean");
+        SingletonBean singletonBean = (SingletonBean)appContext.getBean("singletonBean");
+        System.out.println("Prototype bean counter "+ prototypeBean.getCounter());
+        System.out.println("Singleton bean counter "+ singletonBean.getCounter());
         List<Account> accounts = accountDAO.findAll();
         req.setAttribute("accounts", accounts);
         RequestDispatcher dispatcher = req.getRequestDispatcher("accountsList.jsp");
