@@ -7,14 +7,14 @@
         <property name="message" value="Hello World!"/>
     </bean>
 
-
-
     <bean id="dsource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://localhost:5432/postgres" />
         <property name="username" value="postgres" />
         <property name="password" value="postgres" />
         <property name="initialSize" value="10" />
+        <property name="maxActive" value="20" />
+
     </bean>
 
 </beans>

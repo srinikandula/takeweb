@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Created by Amar on 3/16/2016.
  */
-@WebServlet(urlPatterns = {"/loginServletAmar",})
+@WebServlet(urlPatterns = {"/loginAccountServletAmar",})
 public class LoginFilterServletAmar implements javax.servlet.Filter{
 
     @Override

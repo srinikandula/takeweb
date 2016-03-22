@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/keeLoadList"})
 public class LoadServlet extends HttpServlet {
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //AccountDao dao = new AccountDao();
         //dao.findAll(Integer.parseInt(id));
         KeerthiAccount keerthiAccount = new KeerthiAccount();
@@ -28,6 +28,15 @@ public class LoadServlet extends HttpServlet {
         RequestDispatcher rd = req.getRequestDispatcher("loadAccount.jsp");
         rd.forward(req, res);
     }
+
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        doGet(req,res);
+
+    }
+
+
+
 
     /*private List loadAccounts(int id) {
         PreparedStatement preparedStatement = null;

@@ -32,7 +32,7 @@ public class AccountListServlet extends HttpServlet {
 
     @Override
     public void init(ServletConfig servletConfig) throws ServletException {
-
+        String param = servletConfig.getInitParameter("param");
         System.out.println("AccountListServlet: init() is called");
     }
 
@@ -43,7 +43,7 @@ public class AccountListServlet extends HttpServlet {
         //ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
 
         //EmployeeJDBCDAO dao =(EmployeeJDBCDAO)appContext.getBean("empDao");
-        AccountDAO accountDAO = new AccountDAO();
+        AccountDAO accountDAO = new AccountDAO(req.getServletContext());
         List<Account> accounts = accountDAO.findAll();
         req.setAttribute("accounts", accounts);
         RequestDispatcher dispatcher = req.getRequestDispatcher("accountsList.jsp");

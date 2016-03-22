@@ -16,7 +16,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/keerthiUpdate"})
 public class KeerthiUpdateServlet extends HttpServlet {
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //AccountDao dao = new AccountDao();
         DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
         KeerthiAccount keerthiAccount = new KeerthiAccount();
@@ -32,8 +32,13 @@ public class KeerthiUpdateServlet extends HttpServlet {
         dao.update(keerthiAccount);
         //dao.updateAccount(Integer.parseInt(id), name, Long.parseLong(accNum), Double.parseDouble(bal));
 
-        RequestDispatcher rd = req.getRequestDispatcher("/keeAccountList");
+        RequestDispatcher rd = req.getRequestDispatcher("keeAccountList");
         rd.forward(req, res);
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        doGet(req,res);
+
     }
 
     /*private int updateAccount(int id,String name,long accNumber,double balance){

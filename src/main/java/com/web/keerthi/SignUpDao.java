@@ -65,8 +65,39 @@ public class SignUpDao implements TakeWebDAO<KeerthiUser> {
         return null;
     }
 
+
     @Override
     public void create(KeerthiUser keerthiUser) {
 
+        PreparedStatement preparedStatement = null;
+        ResultSet rs = null;
+        Connection conn;
+        try {
+            Class.forName("org.postgresql.Driver");
+            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop", "postgres", "keerthi");
+            preparedStatement = conn.prepareStatement("INSERT INTO " +
+                    "users(user_name,pass_word, id)VALUES(?,?,?) ");
+            preparedStatement.setInt(3, keerthiUser.getId());
+            preparedStatement.setString(1, keerthiUser.getUserName());
+            preparedStatement.setString(2, keerthiUser.getPassWord());
+           // preparedStatement.setString(4,keerthiUser.getCreatedBy());
+            int result = preparedStatement.executeUpdate();
+            preparedStatement.close();
+            conn.close();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (!(preparedStatement.isClosed())) {
+                    preparedStatement.close();
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
     }
-}
+
+    }
+

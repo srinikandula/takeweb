@@ -11,15 +11,36 @@
      * Created by CrazyNaveen on 3/12/16.
      */
     public class AccountDao {
+        /*public void createAccount(KeerthiAccount account ) {
+
+            try {
+                Class.forName("org.postgresql.Driver");
+                Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop", "postgres", "keerthi");
+                PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO Accounts( id, name, acc_num, balance) VALUES (?,?,?,?)");
+                preparedStatement.setInt(1, account.getId());
+                preparedStatement.setString(2, account.getUserName());
+                 preparedStatement.setDouble(4, account.getBalance());
+                preparedStatement.setLong(3, account.getAccNumber());
+
+                int insertedRecords = preparedStatement.executeUpdate();
+                preparedStatement.close();
+                conn.close();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }*/
+
         public void createAccount(KeerthiAccount account) {
 
             try {
                 Class.forName("org.postgresql.Driver");
                 Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop", "postgres", "keerthi");
-                PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO Accounts( id, name, acc_num, balance, created_by) VALUES (?,?,?,?,?)");
+                PreparedStatement preparedStatement = conn.prepareStatement("INSERT INTO Accounts( id, name, acc_num, balance,created_by) VALUES (?,?,?,?,?)");
                 preparedStatement.setInt(1, account.getId());
                 preparedStatement.setString(2, account.getUserName());
-                 preparedStatement.setDouble(4, account.getBalance());
+                preparedStatement.setDouble(4, account.getBalance());
                 preparedStatement.setLong(3, account.getAccNumber());
                 preparedStatement.setString(5,account.getCreatedBy());
                 int insertedRecords = preparedStatement.executeUpdate();
@@ -211,4 +232,30 @@
             }
             return accounts;
         }
+
+        public KeerthiAccount find(int id) {
+            KeerthiAccount account = new KeerthiAccount();
+            try {
+                Class.forName("org.postgresql.Driver");
+                Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop", "postgres", "keerthi");
+                PreparedStatement preparedStatement = conn.prepareStatement("SELECT * from accounts where id =?");
+                //preparedStatement.setInt(1, account.getId());
+                preparedStatement.setInt(1,id);
+                ResultSet rs  = preparedStatement.executeQuery();
+                while (rs.next()){
+                    account.setId(rs.getInt("id"));
+                    account.setUserName(rs.getString("name"));
+                    account.setAccNumber(rs.getLong("acc_num"));
+                    account.setBalance(rs.getDouble("balance"));
+                }
+                preparedStatement.close();
+                conn.close();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+            return account;
+        }
+
     }

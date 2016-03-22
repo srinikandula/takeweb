@@ -4,6 +4,7 @@ import com.web.model.KeerthiAccount;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -21,18 +22,21 @@ public class KeerthiCreate extends HttpServlet {
         String accNumber = req.getParameter("accNum");
         String balance =req.getParameter("balance");
         KeerthiAccount keerthiAccount =new KeerthiAccount();
+
+        KeerthiUser user = (KeerthiUser) req.getSession().getAttribute("loggedinUser");
+        String createdBy = user.getUserName();
         keerthiAccount.setId(Integer.parseInt(id));
         keerthiAccount.setUserName(userName);
-       // keerthiAccount.setAccNumber(Long.parseLong(accNumber));
+        keerthiAccount.setAccNumber(Long.parseLong(accNumber));
         keerthiAccount.setBalance(Double.parseDouble(balance));
+        keerthiAccount.setCreatedBy(createdBy);
+
         //account.createAccount(Integer.parseInt(id), userName, Long.parseLong(accNumber), Double.parseDouble( balance));
-        KeerthiUser user = (KeerthiUser) (req.getSession().getAttribute("loggedinUser"));
-        String userName1 = user.getUserName();
 
-        keerthiAccount.setCreatedBy(userName1);
-        DaoInterface<KeerthiAccount> accountDao = new AccountDaoImpl();
-        accountDao.create(keerthiAccount);
-
+        AccountDao dao = new AccountDao();
+        dao.createAccount(keerthiAccount);
+       // DaoInterface<KeerthiAccount> accountDao = new AccountDaoImpl();
+        //accountDao.create(keerthiAccount);
         RequestDispatcher rd = req.getRequestDispatcher("keeAccountList");
         rd.forward(req,res);
     }

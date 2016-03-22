@@ -10,6 +10,14 @@ public class KeerthiAccount {
     private double balance;
     private String createdBy;
 
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
+
     public int getId() {
         return id;
     }
@@ -42,11 +50,5 @@ public class KeerthiAccount {
         this.balance = balance;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
-    }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
-    }
 }

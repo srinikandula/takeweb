@@ -25,13 +25,17 @@ public class KeerthiLoginServlet extends HttpServlet {
        // String confPassword = req.getParameter("pwd");
         SignUpDao dao = new SignUpDao();
         KeerthiUser user = dao.find(userName,passWord);
+       // System.out.println(user);
         if(user != null) {
             req.getSession().setAttribute("loggedinUser", user);
-            RequestDispatcher dispatcher = req.getRequestDispatcher("keeAccountList");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("KeeCreate.html");
             dispatcher.forward(req, res);
         }
         else{
-            System.out.println("error....");
+            //System.out.println("error....");
+            RequestDispatcher dispatcher = req.getRequestDispatcher("UserCreate.html");
+            dispatcher.forward(req, res);
+
         }
 
     }
