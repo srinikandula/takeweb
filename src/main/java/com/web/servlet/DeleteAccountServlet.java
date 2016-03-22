@@ -1,9 +1,14 @@
 /**
  * Created by skandula on 3/9/16.
  */
-package com.web;
+package com.web.servlet;
+
+import com.web.dao.AccountDAO;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,25 +30,12 @@ public class DeleteAccountServlet extends HttpServlet{
     protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //super.doGet(req, resp);
         String id = req.getParameter("id");
-        deleteAccount(id);
+        ServletContext context = req.getServletContext();
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(context);
+        AccountDAO accountDAO = (AccountDAO)appContext.getBean("accountDAO");
+        accountDAO.deleteAccount(Integer.parseInt(id));
         RequestDispatcher dispatcher = req.getRequestDispatcher("/accountListServlet");
         dispatcher.forward(req,resp);
     }
 
-    private void deleteAccount(String id) {
-        try {
-            //load the driver
-            Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/postgres", "postgres", "postgres");
-            PreparedStatement preparedStatement = conn.prepareStatement("delete from accounts where id =?");
-            preparedStatement.setInt(1, Integer.parseInt(id));
-            int insertedRecords = preparedStatement.executeUpdate();
-            preparedStatement.close();
-            conn.close();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

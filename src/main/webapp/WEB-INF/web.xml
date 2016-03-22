@@ -1,7 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
-    
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/applicationContext.xml,
+            /WEB-INF/keerthiApplicationContext.xml
+        </param-value>
+    </context-param>
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
@@ -91,7 +97,7 @@
         <url-pattern>/keeCreate</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>keerthiLogin.html</welcome-file>
+       <!-- <welcome-file>keerthiLogin.html</welcome-file>-->
         <welcome-file>login.html</welcome-file>
     </welcome-file-list>
 </web-app>
