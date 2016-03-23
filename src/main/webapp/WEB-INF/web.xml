@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
+
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
     <!--
         <filter>
             <filter-name>userNameCheckFilter</filter-name>
@@ -18,6 +22,12 @@
             <filter-name>userNameCheckFilter</filter-name>
             <url-pattern>/accountListServlet</url-pattern>
         </filter-mapping>-->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/DevSpringApplicationContext.xml
+        </param-value>
+    </context-param>
 
 
     <servlet>
@@ -104,6 +114,6 @@
         <url-pattern>/keeCreate</url-pattern>
     </servlet-mapping>
     <welcome-file-list>
-        <welcome-file>login.html</welcome-file>
+        <welcome-file>/loginPage.html</welcome-file>
     </welcome-file-list>
 </web-app>
