@@ -1,8 +1,11 @@
 package com.web.keerthi;
 
 import com.web.dao.TakeWebDAO;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,8 +30,15 @@ public class UserCreateServlet extends HttpServlet {
         user.setId(Integer.parseInt(id));
         user.setUserName(userName);
         user.setPassWord(passWord);
-        TakeWebDAO dao = new SignUpDao();
-        dao.create(user);
+
+        ServletContext ctxt = req.getSession().getServletContext();
+        //get bean factory
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        SignUpDao signUpDao = (SignUpDao) appContext.getBean("keerthiUserDao");
+        signUpDao.create(user);
+
+        //TakeWebDAO dao = new SignUpDao();
+        //dao.create(user);
         RequestDispatcher dispatcher = req.getRequestDispatcher("keeAccountList");
         //RequestDispatcher dispatcher = req.getRequestDispatcher("keeCreate");
         dispatcher.forward(req, res);

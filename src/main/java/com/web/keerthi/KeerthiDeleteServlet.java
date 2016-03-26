@@ -1,8 +1,11 @@
 package com.web.keerthi;
 
 import com.web.model.KeerthiAccount;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +25,16 @@ public class KeerthiDeleteServlet extends HttpServlet {
         KeerthiAccount keerthiAccount = new KeerthiAccount();
         String id = req.getParameter("id");
         keerthiAccount.setId(Integer.parseInt(id));
-        dao.delete(keerthiAccount);
+
+        ServletContext ctxt = req.getSession().getServletContext();
+        //get bean factory
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        AccountDao accountDao = (AccountDao) appContext.getBean("keerthidAccDao");
+        accountDao.deleteAccount(Integer.parseInt(id));
+
+
+
+       // dao.delete(keerthiAccount);
         //dao.deleteAccount(Integer.parseInt(id));
         RequestDispatcher rd = req.getRequestDispatcher("/keeAccountList");
         rd.forward(req,res);

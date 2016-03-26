@@ -2,6 +2,7 @@ package com.web.keerthi;
 
 import com.web.dao.TakeWebDAO;
 
+import javax.sql.DataSource;
 import java.sql.*;
 import java.util.List;
 
@@ -11,12 +12,24 @@ import java.util.List;
 public class SignUpDao implements TakeWebDAO<KeerthiUser> {
 
 
+
+    private DataSource dataSource;
+
+    public DataSource getDataSource() {
+        return dataSource;
+    }
+
+    public void setDataSource(DataSource dataSource) {
+        this.dataSource = dataSource;
+    }
+
     public KeerthiUser find(String userName, String passWord){
         KeerthiUser user = null;
         //new KeerthiUser();
         try {
-            Class.forName("org.postgresql.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop","postgres","keerthi");
+            Connection conn  = dataSource.getConnection();
+           // Class.forName("org.postgresql.Driver");
+            //Connection conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop","postgres","keerthi");
             PreparedStatement ps = conn.prepareStatement("SELECT * FROM users WHERE user_name=? and pass_word=?");
             ps.setString(1,userName);
             ps.setString(2,passWord);
@@ -35,9 +48,7 @@ public class SignUpDao implements TakeWebDAO<KeerthiUser> {
             ps.close();
             conn.close();
             return user;
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException e) {
+        }  catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
@@ -71,10 +82,11 @@ public class SignUpDao implements TakeWebDAO<KeerthiUser> {
 
         PreparedStatement preparedStatement = null;
         ResultSet rs = null;
-        Connection conn;
+      //  Connection conn;
         try {
-            Class.forName("org.postgresql.Driver");
-            conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop", "postgres", "keerthi");
+            Connection conn = dataSource.getConnection();
+            //Class.forName("org.postgresql.Driver");
+            //conn = DriverManager.getConnection("jdbc:postgresql://localhost:5432/workshop", "postgres", "keerthi");
             preparedStatement = conn.prepareStatement("INSERT INTO " +
                     "users(user_name,pass_word, id)VALUES(?,?,?) ");
             preparedStatement.setInt(3, keerthiUser.getId());
@@ -84,20 +96,18 @@ public class SignUpDao implements TakeWebDAO<KeerthiUser> {
             int result = preparedStatement.executeUpdate();
             preparedStatement.close();
             conn.close();
-        } catch (ClassNotFoundException e) {
+        }  catch (SQLException e) {
             e.printStackTrace();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
+        } /*finally {
             try {
                 if (!(preparedStatement.isClosed())) {
                     preparedStatement.close();
                 }
             } catch (SQLException e) {
                 e.printStackTrace();
-            }
+            }*/
         }
     }
 
-    }
+
 

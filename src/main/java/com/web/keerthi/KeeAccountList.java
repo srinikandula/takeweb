@@ -1,6 +1,9 @@
 package com.web.keerthi;
 
+import com.web.model.Account;
 import com.web.model.KeerthiAccount;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletContext;
@@ -21,8 +24,16 @@ public class KeeAccountList extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         ServletContext servletContext = req.getSession().getServletContext();
-        DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
-        List<KeerthiAccount> accounts = dao.findAll();
+       // DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
+        AccountDao accountDao = new AccountDao();
+
+       // ServletContext ctxt = req.getSession().getServletContext();
+        //get bean factory
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(servletContext);
+        AccountDao dao  = (AccountDao) appContext.getBean("keerthidAccDao");
+         List<KeerthiAccount>  accounts = dao.findAll();
+
+       // List<KeerthiAccount> accounts = accountDao.findAll();
         req.setAttribute("accounts", accounts);
         RequestDispatcher rd = req.getRequestDispatcher("kaccountList.jsp");
         rd.forward(req, res);

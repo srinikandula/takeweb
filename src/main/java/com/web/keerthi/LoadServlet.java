@@ -1,8 +1,11 @@
 package com.web.keerthi;
 
 import com.web.model.KeerthiAccount;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +26,14 @@ public class LoadServlet extends HttpServlet {
         DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
         String id = req.getParameter("id");
         keerthiAccount.setId(Integer.parseInt(id));
-        KeerthiAccount acc = dao.find(Integer.parseInt(id));
+
+        ServletContext ctxt = req.getSession().getServletContext();
+        //get bean factory
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        AccountDao accountDao  = (AccountDao) appContext.getBean("keerthidAccDao");
+       KeerthiAccount acc = accountDao.find(Integer.parseInt(id));
+
+      //  KeerthiAccount acc = dao.find(Integer.parseInt(id));
         req.setAttribute("account", acc);
         RequestDispatcher rd = req.getRequestDispatcher("loadAccount.jsp");
         rd.forward(req, res);

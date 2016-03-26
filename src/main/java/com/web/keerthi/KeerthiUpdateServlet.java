@@ -1,8 +1,11 @@
 package com.web.keerthi;
 
 import com.web.model.KeerthiAccount;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,7 +32,13 @@ public class KeerthiUpdateServlet extends HttpServlet {
         keerthiAccount.setUserName(name);
         keerthiAccount.setAccNumber(Long.parseLong(accNum));
         keerthiAccount.setBalance(Double.parseDouble(bal));
-        dao.update(keerthiAccount);
+        ServletContext ctxt = req.getSession().getServletContext();
+        //get bean factory
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        AccountDao accountDao = (AccountDao) appContext.getBean("keerthidAccDao");
+        accountDao.updateAccount(keerthiAccount);
+
+       // dao.update(keerthiAccount);
         //dao.updateAccount(Integer.parseInt(id), name, Long.parseLong(accNum), Double.parseDouble(bal));
 
         RequestDispatcher rd = req.getRequestDispatcher("keeAccountList");

@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import com.web.keerthi.KeerthiUser;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 /**
  * Created by CrazyNaveen on 3/16/16.
@@ -23,8 +25,12 @@ public class KeerthiLoginServlet extends HttpServlet {
         String userName = req.getParameter("uname");
         String passWord = req.getParameter("pswd");
        // String confPassword = req.getParameter("pwd");
-        SignUpDao dao = new SignUpDao();
-        KeerthiUser user = dao.find(userName,passWord);
+        ServletContext ctxt = req.getSession().getServletContext();
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        SignUpDao signUpDao = (SignUpDao) appContext.getBean("keerthiUserDao");
+         KeerthiUser user = signUpDao.find(userName,passWord);
+       // SignUpDao dao = new SignUpDao();
+       // KeerthiUser user = dao.find(userName,passWord);
        // System.out.println(user);
         if(user != null) {
             req.getSession().setAttribute("loggedinUser", user);
