@@ -2,11 +2,10 @@
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
 
-<<<<<<< HEAD
-    <listener>
+   <!-- <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
-=======
+-->
     <!--<filter>
         <filter-name>keerthiLogin</filter-name>
         <filter-class>com.web.keerthi.LoginFilter</filter-class>
@@ -25,7 +24,8 @@
         <param-name>contextConfigLocation</param-name>
         <param-value>
             /WEB-INF/applicationContext.xml,
-            /WEB-INF/keerthiApplicationContext.xml
+            /WEB-INF/keerthiApplicationContext.xml,
+            /WEB-INF/DevSpringApplicationContext.xml
         </param-value>
     </context-param>
 
@@ -52,7 +52,7 @@
     </filter-mapping>
 -->
 
->>>>>>> ca09126b153b8d2f6b6c980bec2a11be2484d9e4
+
     <!--
         <filter>
             <filter-name>userNameCheckFilter</filter-name>
@@ -70,13 +70,6 @@
             <filter-name>userNameCheckFilter</filter-name>
             <url-pattern>/accountListServlet</url-pattern>
         </filter-mapping>-->
-    <context-param>
-        <param-name>contextConfigLocation</param-name>
-        <param-value>
-            /WEB-INF/DevSpringApplicationContext.xml
-        </param-value>
-    </context-param>
-
 
 
 
@@ -174,12 +167,12 @@
         <servlet-name>KeeCreate</servlet-name>
         <url-pattern>/keeCreate</url-pattern>
     </servlet-mapping>
-<<<<<<< HEAD
+
     <welcome-file-list>
         <welcome-file>/loginPage.html</welcome-file>
     </welcome-file-list>
 </web-app>
-=======
+
 
    <!-- <welcome-file-list>
        &lt;!&ndash; <welcome-file>keerthiLogin.html</welcome-file>&ndash;&gt;
@@ -187,6 +180,3 @@
     </welcome-file-list>-->
 
 
-        </web-app>
-
->>>>>>> ca09126b153b8d2f6b6c980bec2a11be2484d9e4
