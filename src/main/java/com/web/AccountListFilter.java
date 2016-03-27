@@ -21,7 +21,7 @@ public class AccountListFilter implements javax.servlet.Filter {
         if(username != null && username.equals("joe")) {
             filterChain.doFilter(servletRequest, servletResponse);
         }else {
-            RequestDispatcher dispatcher = servletRequest.getRequestDispatcher("login.html");
+            RequestDispatcher dispatcher = servletRequest.getRequestDispatcher("login.jsp");
             dispatcher.forward(servletRequest, servletResponse);
         }
     }

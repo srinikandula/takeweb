@@ -6,8 +6,27 @@
     <bean id="helloWorld" class="com.web.HelloWorld">
         <property name="message" value="Hello World!"/>
     </bean>
-    <bean id="accountDAO" class="com.web.dao.AccountDAO">
 
+
+    <bean id="OrderDAO" class="com.web.DAO.OrderDAOImpl">
+        <property name="dataSource" ref="dsource"/>
+        <property name="message" value="Hello there"/>
+    </bean>
+
+    <bean id="LoginDAO" class="com.web.DAO.LoginDAO">
+            <property name="dataSource" ref="dsource"/>
+            <property name="user" ref="User"/>
+    </bean>
+    <bean id="Order" class="com.web.model.Order"/>
+    <bean id="User" class="com.web.model.User"/>
+
+
+    <bean id="dsource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver" />
+        <property name="url" value="jdbc:postgresql://localhost:5432/postgres" />
+        <property name="username" value="postgres" />
+        <property name="password" value="gouthami26" />
+        <property name="initialSize" value="10" />
     </bean>
 
 </beans>

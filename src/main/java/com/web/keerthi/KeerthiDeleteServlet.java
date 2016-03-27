@@ -23,7 +23,7 @@ public class KeerthiDeleteServlet extends HttpServlet {
         String id = req.getParameter("id");
         keerthiAccount.setId(Integer.parseInt(id));
         dao.delete(keerthiAccount);
-        //dao.deleteAccount(Integer.parseInt(id));
+        //DAO.deleteAccount(Integer.parseInt(id));
         RequestDispatcher rd = req.getRequestDispatcher("/keeAccountList");
         rd.forward(req,res);
     }

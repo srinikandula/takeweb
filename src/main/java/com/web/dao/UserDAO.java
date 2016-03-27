@@ -1,4 +1,4 @@
-package com.web.dao;
+package com.web.DAO;
 
 import com.web.model.User;
 

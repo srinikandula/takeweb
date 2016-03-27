@@ -1,19 +1,24 @@
 package com.web.model;
 
 /**
- * Created by skandula on 3/12/16.
+ * Created by skandula on 3/10/16.
  */
 public class Order {
-    private int id;
-    private int quantity;
-    private double price;
 
-    public int getId() {
-        return id;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
+    }
+
+    public int getAmount() {
+        return Amount;
+    }
+
+    public void setAmount(int amount) {
+        Amount = amount;
     }
 
     public int getQuantity() {
@@ -24,13 +29,27 @@ public class Order {
         this.quantity = quantity;
     }
 
-    public double getPrice() {
-        return price;
+    public int getOrderprice() {
+        return orderprice;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setOrderprice(int orderprice) {
+        this.orderprice = orderprice;
     }
 
+    private int orderId;
+    private int Amount;
+    private int quantity;
+    private int orderprice;
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    private String userName;
 
 }

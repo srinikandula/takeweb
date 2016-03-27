@@ -17,7 +17,7 @@ import java.io.IOException;
 public class KeerthiUpdateServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        //AccountDao dao = new AccountDao();
+        //AccountDao DAO = new AccountDao();
         DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
         KeerthiAccount keerthiAccount = new KeerthiAccount();
         String id = req.getParameter("id");
@@ -30,7 +30,7 @@ public class KeerthiUpdateServlet extends HttpServlet {
         keerthiAccount.setAccNumber(Long.parseLong(accNum));
         keerthiAccount.setBalance(Double.parseDouble(bal));
         dao.update(keerthiAccount);
-        //dao.updateAccount(Integer.parseInt(id), name, Long.parseLong(accNum), Double.parseDouble(bal));
+        //DAO.updateAccount(Integer.parseInt(id), name, Long.parseLong(accNum), Double.parseDouble(bal));
 
         RequestDispatcher rd = req.getRequestDispatcher("/keeAccountList");
         rd.forward(req, res);

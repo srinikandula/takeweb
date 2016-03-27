@@ -1,6 +1,4 @@
-package com.web.dao;
-
-import com.web.model.Account;
+package com.web.DAO;
 
 import java.util.List;
 
@@ -13,5 +11,6 @@ public interface TakeWebDAO<T> {
     public T find(int id);
     public List<T> findAll();
     public void create(T t);
+
 
 }

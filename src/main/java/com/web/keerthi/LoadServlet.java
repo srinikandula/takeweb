@@ -17,8 +17,8 @@ import java.io.IOException;
 public class LoadServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
-        //AccountDao dao = new AccountDao();
-        //dao.findAll(Integer.parseInt(id));
+        //AccountDao DAO = new AccountDao();
+        //DAO.findAll(Integer.parseInt(id));
         KeerthiAccount keerthiAccount = new KeerthiAccount();
         DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
         String id = req.getParameter("id");

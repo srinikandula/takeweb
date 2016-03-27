@@ -27,7 +27,7 @@ public class LoadServletDAO {
             TakeWebDAO MyAccountDAO = new MyAccountDAOImpl();
             MyAccount acc = (MyAccount)MyAccountDAO.find(Integer.parseInt(id));
             //myAccount.setId(Integer.parseInt("id"));
-            //myAccount acc = dao.find(Integer.parseInt("id"));
+            //myAccount acc = DAO.find(Integer.parseInt("id"));
             req.setAttribute("account", acc);
             RequestDispatcher requestDispatcher = req.getRequestDispatcher("loadMyAccount.jsp");
             requestDispatcher.forward(req,resp);

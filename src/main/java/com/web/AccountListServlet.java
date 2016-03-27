@@ -1,14 +1,9 @@
 package com.web;
 
 
-import com.web.dao.AccountDAO;
-import com.web.dao.AccountDAOImpl;
-import com.web.dao.AccountOracleDAOImpl;
-import com.web.dao.TakeWebDAO;
+import com.web.DAO.AccountDAO;
 import com.web.model.Account;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
@@ -20,8 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.*;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -42,7 +35,8 @@ public class AccountListServlet extends HttpServlet {
         ServletContext ctxt = req.getSession().getServletContext();
         //ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
 
-        //EmployeeJDBCDAO dao =(EmployeeJDBCDAO)appContext.getBean("empDao");
+        //EmployeeJDBCDAO DAO =(EmployeeJDBCDAO)appContext.getBean("empDao");
+
         AccountDAO accountDAO = new AccountDAO();
         List<Account> accounts = accountDAO.findAll();
         req.setAttribute("accounts", accounts);
