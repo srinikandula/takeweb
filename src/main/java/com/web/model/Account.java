@@ -1,8 +1,10 @@
 package com.web.model;
 
+
 /**
  * Created by skandula on 3/10/16.
  */
+
 public class Account {
     public int getId() {
         return id;

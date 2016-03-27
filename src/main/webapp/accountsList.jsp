@@ -22,7 +22,7 @@
     out.print("<p> User logged in <b>"+user.getUserName()+"  <a href=\"logout\">Logout</a></p>");
   }
 %>
-
+<a href="createAccount.html">Create Account</a>
 
 <table border="1" style="width:100%">
   <%

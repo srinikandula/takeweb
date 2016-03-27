@@ -1,5 +1,6 @@
     <%@ page import="java.util.List" %>
-    <%@ page import="com.web.model.KeerthiAccount" %><%--
+    <%@ page import="com.web.model.KeerthiAccount" %>
+    <%@ page import="com.web.keerthi.KeerthiUser" %><%--
       Created by IntelliJ IDEA.
       User: CrazyNaveen
       Date: 3/10/16
@@ -20,6 +21,7 @@
                 border-collapse: collapse;
                 cellpadding:"1";
                 cellspacing:"1";
+                width:100%;
             }
             tr,td{
                 padding: 10px;
@@ -34,6 +36,15 @@
         </style>
     </head>
     <body>
+    <%
+        Object obj = session.getAttribute("loggedinUser");
+        if(obj != null){
+            KeerthiUser user = (KeerthiUser) obj;
+            out.print("<p> User logged in <b>"+user.getUserName()+"  <a href=\"keerthiLogin.html\">Logout</a></p>");
+        }
+    %>
+
+   <!-- <p>User logged in <%=((KeerthiUser)session.getAttribute("loggedinUser")).getUserName()%> <a href="logoutServlet">Logout</a> </p>-->
     <table id="tab1">
     <%
          List<KeerthiAccount> list = (List<KeerthiAccount>)request.getAttribute("accounts");
@@ -41,16 +52,21 @@
         out.print("<th>"+"Id"+ "<th>");
         out.print("<th>"+"Name"+ "<th>");
         out.print("<th>"+"Account Number"+"<th>");
-        out.print("<th>"+"Balance"+ "<th>");*/
-        /*out.print("<th>"+"Update"+ "<th>");
+        out.print("<th>"+"Balance"+ "<th>");
+        out.print("<th>"+"CreatedBy"+ "<th>");
+        out.print("<th>"+"Update"+ "<th>");
         out.print("<th>"+"Delete"+ "<th>");*/
+       KeerthiUser user = (KeerthiUser)session.getAttribute("loggedinUser");
+
         out.print("</tr>");
         for (KeerthiAccount account:list){
+            //account.setCreatedBy(user.getUserName());
             out.print("<tr>");
-            out.print("<td>" +account.getId() +"</td>");
-            out.print("<td>" +account.getUserName() +"</td>");
+            out.print("<td>" +account.getId() + "</td>");
+            out.print("<td>" +account.getUserName() + "</td>");
             out.print("<td>" +account.getAccNumber() + "</td>");
-            out.print("<td>" +account.getBalance() +"</td>");
+            out.print("<td>" +account.getBalance() + "</td>");
+           // out.print("<td>" +account.getCreatedBy() + "</td>");
             out.print("<td><a href='keeLoadList?id="+account.getId()+"'>Update</a></td>");
             out.print("<td><a href='keerthiDelete?id="+account.getId()+"'>Delete</a></td>");
             out.print("</tr>");

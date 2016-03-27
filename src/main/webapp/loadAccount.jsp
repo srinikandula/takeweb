@@ -22,17 +22,16 @@
     </script>
     <style>
         #tab1 {
-            width: 250px;
+
             border: 1px solid black;
-            border-collapse: collapse;
         }
         tr,td{
             padding: 5px;
         }
-        #tab1 tr:nth-child(even){
+        #tab1 tr:nth-child(odd){
             background-color: #eee;
         }
-        #tab1 tr:nth-child(odd){
+        #tab1 tr:nth-child(even){
             background-color: #fff;
         }
 
@@ -49,7 +48,7 @@
     <div id="tabs-1">
         <p>
 --%>
-       <form action="keerthiUpdate">
+       <form action="keerthiUpdate" >
             <table id="tab1" align="center">
                 <%
                     KeerthiAccount account = (KeerthiAccount) request.getAttribute("account");

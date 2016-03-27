@@ -1,9 +1,12 @@
-package com.web;
+package com.web.servlet;
 
 import com.web.dao.UserDAO;
 import com.web.model.User;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -22,7 +25,10 @@ public class LoginServlet extends HttpServlet {
         //super.doPost(httpServletRequest, httpServletResponse);
         String userName = httpServletRequest.getParameter("username");
         String password = httpServletRequest.getParameter("password");
-        UserDAO userDAO = new UserDAO();
+        ServletContext ctxt = httpServletRequest.getSession().getServletContext();
+        //get bean factory
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        UserDAO userDAO = (UserDAO)appContext.getBean("userDAO");
         User user = userDAO.findUser(userName, password);
         if(user != null) { //login success
             httpServletRequest.getSession().setAttribute("user", user);

@@ -7,9 +7,12 @@ import com.web.dao.AccountDAO;
 import com.web.dao.AccountDAOImpl;
 import com.web.dao.TakeWebDAO;
 import com.web.model.Account;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,8 +40,9 @@ public class CreateAccountServlet extends HttpServlet{
         account.setFirstName(firstName);
         account.setLastName(lname);
         account.setBalance(Double.parseDouble(balanceString));
-
-        AccountDAO accountDAO = new AccountDAO();
+        ServletContext context = req.getServletContext();
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(context);
+        AccountDAO accountDAO = (AccountDAO)appContext.getBean("accountDAO");
         accountDAO.createAccount(firstName, lname, Double.parseDouble(balanceString), id);
         dao.create(account);
 

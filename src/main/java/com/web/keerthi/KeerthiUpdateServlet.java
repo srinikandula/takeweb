@@ -1,8 +1,11 @@
 package com.web.keerthi;
 
 import com.web.model.KeerthiAccount;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,7 +19,7 @@ import java.io.IOException;
 @WebServlet(urlPatterns = {"/keerthiUpdate"})
 public class KeerthiUpdateServlet extends HttpServlet {
     @Override
-    protected void service(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
         //AccountDao dao = new AccountDao();
         DaoInterface<KeerthiAccount> dao = new AccountDaoImpl();
         KeerthiAccount keerthiAccount = new KeerthiAccount();
@@ -29,11 +32,22 @@ public class KeerthiUpdateServlet extends HttpServlet {
         keerthiAccount.setUserName(name);
         keerthiAccount.setAccNumber(Long.parseLong(accNum));
         keerthiAccount.setBalance(Double.parseDouble(bal));
-        dao.update(keerthiAccount);
+        ServletContext ctxt = req.getSession().getServletContext();
+        //get bean factory
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        AccountDao accountDao = (AccountDao) appContext.getBean("keerthidAccDao");
+        accountDao.updateAccount(keerthiAccount);
+
+       // dao.update(keerthiAccount);
         //dao.updateAccount(Integer.parseInt(id), name, Long.parseLong(accNum), Double.parseDouble(bal));
 
-        RequestDispatcher rd = req.getRequestDispatcher("/keeAccountList");
+        RequestDispatcher rd = req.getRequestDispatcher("keeAccountList");
         rd.forward(req, res);
+    }
+
+    protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+        doGet(req,res);
+
     }
 
     /*private int updateAccount(int id,String name,long accNumber,double balance){
