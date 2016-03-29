@@ -8,6 +8,7 @@
     </bean>
 
 
+
     <bean id="OrderDAO" class="com.web.DAO.OrderDAOImpl">
         <property name="dataSource" ref="dsource"/>
         <property name="message" value="Hello there"/>
@@ -21,11 +22,25 @@
     <bean id="User" class="com.web.model.User"/>
 
 
+=======
+    <bean id="accountDAO" class="com.web.dao.AccountDAO" scope="singleton">
+        <property name="dataSource" ref="dsource"/>
+        <property name="message" value="Hello there"/>
+    </bean>
+    <bean id="userDAO" class="com.web.dao.UserDAO">
+        <property name="dataSource" ref="dsource"/>
+
+    </bean>
+
     <bean id="dsource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.postgresql.Driver" />
         <property name="url" value="jdbc:postgresql://localhost:5432/postgres" />
         <property name="username" value="postgres" />
+
         <property name="password" value="gouthami26" />
+
+        <property name="password" value="postgres" />
+
         <property name="initialSize" value="10" />
     </bean>
 

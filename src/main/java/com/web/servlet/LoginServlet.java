@@ -1,4 +1,4 @@
-package com.web;
+package com.web.servlet;
 
 import com.web.DAO.LoginDAO;
 import com.web.DAO.OrderDAO;
@@ -28,6 +28,7 @@ public class LoginServlet extends HttpServlet {
         String userName = httpServletRequest.getParameter("username");
         String password = httpServletRequest.getParameter("password");
         ServletContext ctxt = httpServletRequest.getSession().getServletContext();
+<<<<<<< HEAD:src/main/java/com/web/LoginServlet.java
         ApplicationContext appContext = WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
         LoginDAO dao = (LoginDAO)appContext.getBean("LoginDAO");
         User user = dao.checklogin(userName , password);
@@ -43,5 +44,16 @@ public class LoginServlet extends HttpServlet {
             dispatcher.forward(httpServletRequest, httpServletResponse);
 
         }
+=======
+        //get bean factory
+        ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+        UserDAO userDAO = (UserDAO)appContext.getBean("userDAO");
+        User user = userDAO.findUser(userName, password);
+        if(user != null) { //login success
+            httpServletRequest.getSession().setAttribute("user", user);
+            RequestDispatcher dispatcher = httpServletRequest.getRequestDispatcher("accountListServlet");
+            dispatcher.forward(httpServletRequest, httpServletResponse);
+        }
+>>>>>>> e9afa4a5644ac6e192f3bfc3a4a809aad5b24c05:src/main/java/com/web/servlet/LoginServlet.java
     }
 }

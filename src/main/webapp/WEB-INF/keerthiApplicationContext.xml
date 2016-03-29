@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+   <!-- <bean id="prototypeBean" class="com.web.bean.PrototypeBean" scope="prototype">
+    </bean>
+    <bean id="singletonBean" class="com.web.bean.SingletonBean">
+    </bean>-->
+    <bean id="keerthidAccDao" class="com.web.keerthi.AccountDao">
+        <property name="dataSource" ref="keeDataSource"></property>
+
+    </bean>
+
+    <bean id="keerthiUserDao" class="com.web.keerthi.SignUpDao">
+        <property name="dataSource" ref="keeDataSource"></property>
+
+    </bean>
+
+    <bean id="keeDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+        <property name="driverClassName" value="org.postgresql.Driver"/>
+        <property name="url" value="jdbc:postgresql://localhost:5432/workshop"/>
+        <property name="username" value="postgres"/>
+        <property name="password" value="keerthi"/>
+
+    </bean>
+
+</beans>

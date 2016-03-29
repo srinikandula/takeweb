@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * Created by Amar on 3/11/2016.
  */
-@WebServlet(urlPatterns = {"/loadAccountServletAmar"})
+//@WebServlet(urlPatterns = {"/loadAccountServletAmar"})
 public class LoadAccountServlet extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {

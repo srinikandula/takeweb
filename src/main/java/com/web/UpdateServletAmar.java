@@ -12,7 +12,7 @@ import java.sql.*;
 /**
  * Created by Amar on 3/11/2016.
  */
-@WebServlet(urlPatterns = {"/updateAccountServletAmar"})
+//@WebServlet(urlPatterns = {"/updateAccountServletAmar"})
 public class UpdateServletAmar extends HttpServlet {
     @Override
     protected void service(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {

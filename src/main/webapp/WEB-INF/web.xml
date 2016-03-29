@@ -1,9 +1,102 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE web-app PUBLIC "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN" "http://java.sun.com/dtd/web-app_2_3.dtd">
 <web-app>
+
    <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+
+
+   <!-- <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+-->
+    <!--<filter>
+        <filter-name>keerthiLogin</filter-name>
+        <filter-class>com.web.keerthi.LoginFilter</filter-class>
+    </filter>-->
+   <!-- <filter>
+        <filter-name>keerthiPassword</filter-name>
+        <filter-class>com.web.keerthi.FilterTwo</filter-class>
+    </filter>-->
+
+   <!-- <filter>
+        <filter-name>userNameCheckFilter</filter-name>
+        <filter-class>com.web.AccountListFilter</filter-class>
+    </filter>-->
+
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            /WEB-INF/applicationContext.xml,
+            /WEB-INF/keerthiApplicationContext.xml,
+            /WEB-INF/DevSpringApplicationContext.xml
+        </param-value>
+    </context-param>
+
+
+    <filter>
+        <filter-name>testFilter</filter-name>
+        <filter-class>com.web.TestFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>testFilter</filter-name>
+        <url-pattern>/accountListServlet</url-pattern>
+    </filter-mapping>
+
+    <filter>
+        <filter-name>checkFilter</filter-name>
+        <filter-class>com.web.CheckFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>checkFilter</filter-name>
+        <url-pattern>/updateOrder</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>checkFilter</filter-name>
+        <url-pattern>/deleteOrder</url-pattern>
+
+    </filter-mapping>
+   <!-- <filter-mapping>
+        <filter-name>userNameCheckFilter</filter-name>
+        <url-pattern>/accountListServlet</url-pattern>
+    </filter-mapping>-->
+    <!--<filter-mapping>
+        <filter-name>keerthiLogin</filter-name>
+        <url-pattern>/loginServlet</url-pattern>
+    </filter-mapping>-->
+   <!-- <filter-mapping>
+        <filter-name>keerthiPassword</filter-name>
+        <url-pattern>/signupFilter</url-pattern>
+    </filter-mapping>
+-->
+
+
+    <!--
+        <filter>
+            <filter-name>userNameCheckFilter</filter-name>
+            <filter-class>com.web.filter.AccountListFilter</filter-class>
+        </filter>
+        <filter>
+            <filter-name>testFilter</filter-name>
+            <filter-class>com.web.TestFilter</filter-class>
+        </filter>
+        <filter-mapping>
+            <filter-name>testFilter</filter-name>
+            <url-pattern>/accountListServlet</url-pattern>
+        </filter-mapping>
+        <filter-mapping>
+            <filter-name>userNameCheckFilter</filter-name>
+            <url-pattern>/accountListServlet</url-pattern>
+        </filter-mapping>-->
+
+
+
+
+
+
     <servlet>
         <servlet-name>createAccountAmar</servlet-name>
         <servlet-class>com.web.CreateAccountServletAmar</servlet-class>
@@ -15,10 +108,6 @@
     <servlet>
         <servlet-name>accountDepositAmar</servlet-name>
         <servlet-class>com.web.depositServletAmar</servlet-class>
-    </servlet>
-    <servlet>
-        <servlet-name>ListOrder</servlet-name>
-        <servlet-class>com.web.OrderListServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>deleteOrder</servlet-name>
@@ -36,6 +125,12 @@
         <servlet-name>updateOrder</servlet-name>
         <servlet-class>com.web.UpdateOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListOrder</servlet-name>
+        <servlet-class>com.web.OrderListServlet</servlet-class>
+    </servlet>
+
+
 
 
     <servlet-mapping>
@@ -54,10 +149,19 @@
         <servlet-name>ListOrder</servlet-name>
         <url-pattern>/OrderListServlet</url-pattern>
     </servlet-mapping>
+
     <servlet-mapping>
         <servlet-name>deleteOrder</servlet-name>
         <url-pattern>/deleteOrder</url-pattern>
     </servlet-mapping>
+
+
+   <!-- <servlet-mapping>
+        <servlet-name>createAccount</servlet-name>
+        <url-pattern>/create</url-pattern>
+    </servlet-mapping>-->
+
+
     <servlet-mapping>
         <servlet-name>createOrder</servlet-name>
         <url-pattern>/createOrder</url-pattern>
@@ -74,24 +178,21 @@
     </servlet-mapping>
 
 
-    <filter>
-        <filter-name>checkFilter</filter-name>
-        <filter-class>com.web.CheckFilter</filter-class>
-    </filter>
 
-    <filter-mapping>
-    <filter-name>checkFilter</filter-name>
-    <url-pattern>/updateOrder</url-pattern>
-</filter-mapping>
 
-    <filter-mapping>
-        <filter-name>checkFilter</filter-name>
-        <url-pattern>/deleteOrder</url-pattern>
-
-    </filter-mapping>
 
     <welcome-file-list>
         <welcome-file>login.html</welcome-file>
     </welcome-file-list>
 
+
+
 </web-app>
+
+
+   <!-- <welcome-file-list>
+       &lt;!&ndash; <welcome-file>keerthiLogin.html</welcome-file>&ndash;&gt;
+        <welcome-file>login.html</welcome-file>
+    </welcome-file-list>-->
+
+

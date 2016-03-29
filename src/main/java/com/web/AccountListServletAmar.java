@@ -1,8 +1,13 @@
 package com.web;
 
+import com.web.dao.AmarAccountDAO;
 import com.web.model.AmarAccount;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -18,9 +23,16 @@ import java.util.List;
  */
 @WebServlet(urlPatterns = {"/accountListServletAmar"})
 public class AccountListServletAmar extends HttpServlet{
+    @Autowired
+    private AmarAccountDAO amarAccountDAO;
         @Override
         protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-            List<AmarAccount> acc = findAllAccounts();
+
+            ServletContext ctxt = req.getSession().getServletContext();
+            ApplicationContext appContext= WebApplicationContextUtils.getRequiredWebApplicationContext(ctxt);
+            AmarAccountDAO amarAccountDAO =(AmarAccountDAO)appContext.getBean("amarAccountDAO");
+            List<AmarAccount> acc = amarAccountDAO.findAllAccounts();
+            //List<AmarAccount> acc = findAllAccounts();
             req.setAttribute("accounts", acc);
             RequestDispatcher dispatcher = req.getRequestDispatcher("accountsListAmar.jsp");
             dispatcher.forward(req, resp);
